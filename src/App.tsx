@@ -1,3 +1,6 @@
+import DocumentChamberPage from './pages/DocumentChamberPage';
+import VideoCallPage from './pages/video/VideoCallPage';
+import CalendarPage from './pages/CalendarPage';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
@@ -63,7 +66,11 @@ function App() {
           <Route path="/messages" element={<DashboardLayout />}>
             <Route index element={<MessagesPage />} />
           </Route>
-          
+
+          <Route path="/calendar" element={<DashboardLayout />}>
+             <Route index element={<CalendarPage />} />
+          </Route>
+
           <Route path="/notifications" element={<DashboardLayout />}>
             <Route index element={<NotificationsPage />} />
           </Route>
@@ -76,6 +83,10 @@ function App() {
             <Route index element={<SettingsPage />} />
           </Route>
           
+          <Route path="/video-call" element={<DashboardLayout />}>
+              <Route index element={<VideoCallPage />} />
+          </Route>
+
           <Route path="/help" element={<DashboardLayout />}>
             <Route index element={<HelpPage />} />
           </Route>

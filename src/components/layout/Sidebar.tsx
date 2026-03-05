@@ -1,3 +1,4 @@
+import { Video, Calendar } from 'lucide-react';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
@@ -43,6 +44,8 @@ export const Sidebar: React.FC = () => {
     { to: '/messages', icon: <MessageCircle size={20} />, text: 'Messages' },
     { to: '/notifications', icon: <Bell size={20} />, text: 'Notifications' },
     { to: '/documents', icon: <FileText size={20} />, text: 'Documents' },
+    { to: '/video-call', icon: <Video size={20} />, text: 'Video Call' },
+    { to: '/calendar', icon: <Calendar size={20} />, text: 'Calendar' }, 
   ];
   
   const investorItems = [
@@ -52,6 +55,8 @@ export const Sidebar: React.FC = () => {
     { to: '/messages', icon: <MessageCircle size={20} />, text: 'Messages' },
     { to: '/notifications', icon: <Bell size={20} />, text: 'Notifications' },
     { to: '/deals', icon: <FileText size={20} />, text: 'Deals' },
+    { to: '/video-call', icon: <Video size={20} />, text: 'Video Call' },
+    { to: '/calendar', icon: <Calendar size={20} />, text: 'Calendar' },
   ];
   
   const sidebarItems = user.role === 'entrepreneur' ? entrepreneurItems : investorItems;
