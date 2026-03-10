@@ -22,9 +22,10 @@ export const LoginPage: React.FC = () => {
     setIsLoading(true);
     
     try {
-      await login(email, password, role);
-      // Redirect based on user role
-      navigate(role === 'entrepreneur' ? '/dashboard/entrepreneur' : '/dashboard/investor');
+     await login(email, password, role);
+
+// Go to OTP verification page
+navigate("/otp");
     } catch (err) {
       setError((err as Error).message);
       setIsLoading(false);

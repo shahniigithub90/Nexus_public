@@ -1,7 +1,8 @@
+import OtpVerificationPage from './components/security/OtpVerificationPage'
+import PaymentsPage from './pages/payments/paymentpage';
 import DocumentChamberPage from './pages/DocumentChamberPage';
 import VideoCallPage from './pages/video/VideoCallPage';
 import CalendarPage from './pages/CalendarPage';
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 
@@ -76,12 +77,22 @@ function App() {
           </Route>
           
           <Route path="/documents" element={<DashboardLayout />}>
-            <Route index element={<DocumentsPage />} />
+             <Route index element={<DocumentsPage />} />
+          </Route>
+
+        <Route path="/documentChamber" element={<DashboardLayout />}>
+           <Route index element={<DocumentChamberPage />} />
+        </Route>
+
+          <Route path="/payments" element={<DashboardLayout />}>
+            <Route index element={<PaymentsPage />} />
           </Route>
           
           <Route path="/settings" element={<DashboardLayout />}>
             <Route index element={<SettingsPage />} />
+
           </Route>
+          <Route path="/otp" element={<OtpVerificationPage />} />
           
           <Route path="/video-call" element={<DashboardLayout />}>
               <Route index element={<VideoCallPage />} />

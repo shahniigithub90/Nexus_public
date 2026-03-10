@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef} from "react";
 import SignatureCanvas from "react-signature-canvas";
 
 interface DocumentItem {
@@ -12,7 +12,7 @@ function DocumentChamberPage() {
   const [documents, setDocuments] = useState<DocumentItem[]>([]);
   const [selectedDoc, setSelectedDoc] = useState<DocumentItem | null>(null);
 
-  const sigPad = useRef<SignatureCanvas | null>(null);
+ const sigPad = useRef<SignatureCanvas | null>(null);
 
   // Upload document
   const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,26 +39,22 @@ function DocumentChamberPage() {
   };
 
   // Save signature
-  const handleSign = () => {
-    if (!sigPad.current) return;
+ const handleSign = () => {
+  if (!sigPad.current) return;
 
-    const signature = sigPad.current.getTrimmedCanvas().toDataURL("image/png");
+let signature = "";
 
-    alert("Document Signed!");
+if (sigPad.current) {
+  signature = sigPad.current
+    .getTrimmedCanvas()
+    .toDataURL("image/png");
+}
 
-    if (selectedDoc) {
-      changeStatus(selectedDoc.id, "Signed");
-    }
-  };
+  if (selectedDoc) {
+    changeStatus(selectedDoc.id, "Signed");
+  }
+};
   return (
-<div>
-    <h1 className="text-2xl font-bold mb-4">Document Chamber</h1>
-
-    {/* Upload */}
-    <input type="file" accept=".pdf,.doc,.docx" onChange={handleUpload} />
-
-    <div className="mt-6 grid grid-cols-2 gap-6"></div>
-
     <div>
       <h1 className="text-2xl font-bold mb-4">Document Chamber</h1>
 
@@ -116,6 +112,38 @@ function DocumentChamberPage() {
                 title="Document Preview"
                 className="w-full h-64 border mb-4"
               />
+{/* Signature Pad */}
+<div className="mt-6">
+  <h2 className="text-lg font-semibold mb-2">E-Signature</h2>
+
+  <SignatureCanvas
+    ref={sigPad}
+    penColor="black"
+    canvasProps={{
+      width: 400,
+      height: 200,
+      className: "border rounded bg-white",
+    }}
+  />
+
+  <div className="mt-2 flex gap-2">
+    <button
+      onClick={() => sigPad.current?.clear()}
+      className="px-3 py-1 bg-gray-400 text-white rounded"
+    >
+      Clear
+    </button>
+
+    <button
+      onClick={handleSign}
+      className="px-3 py-1 bg-green-600 text-white rounded"
+    >
+      Sign Document
+    </button>
+  </div>
+</div>
+
+
 
               {/* Signature Pad */}
               <h3 className="font-semibold mb-2">E-Signature</h3>
@@ -151,7 +179,7 @@ function DocumentChamberPage() {
 
       </div>
     </div>
-    </div>
+
   );
 }
 
